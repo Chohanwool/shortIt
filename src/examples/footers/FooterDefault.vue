@@ -138,12 +138,12 @@ defineProps({
         <div class="col-12">
           <div class="text-center">
             <p class="text-dark my-4 text-sm font-weight-normal">
-              All rights reserved. Copyright ©
+              ©
               {{ new Date().getFullYear() }}
-              ShortIt by
               <a target="_blank"
                 >Palm Co., Ltd. IT</a
               >.
+              All rights reserved. Design based on Vue Material Kit by Creative Tim (MIT Licensed).
             </p>
           </div>
         </div>
