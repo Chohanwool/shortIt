@@ -1,5 +1,5 @@
 <script setup>
-import logoDark from "@/assets/img/logo-ct-dark.png";
+import logoDark from "@/assets/img/palm_logo-removebg-preview.png";
 defineProps({
   brand: {
     type: Object,
@@ -7,7 +7,7 @@ defineProps({
     logo: String,
     route: "",
     default: () => ({
-      name: "Material Kit 2",
+      name: "Palm Co., Ltd.",
       logo: logoDark,
       route: "/"
     })
@@ -53,31 +53,9 @@ defineProps({
         items: [
           {
             name: "about us",
-            href: "https://www.creative-tim.com/presentation"
+            href: "/"
           },
-          {
-            name: "freebies",
-            href: "https://www.creative-tim.com/templates/free"
-          },
-          {
-            name: "premium tools",
-            href: "https://www.creative-tim.com/templates/premium"
-          },
-          { name: "blog", href: "https://www.creative-tim.com/blog" }
-        ]
-      },
-      {
-        name: "resources",
-        items: [
-          { name: "illustrations", href: "https://iradesign.io/" },
-          {
-            name: "bits & snippets",
-            href: "https://www.creative-tim.com/bits"
-          },
-          {
-            name: "affiliate program",
-            href: "https://www.creative-tim.com/affiliates/new"
-          }
+          { name: "blog", href: "/" }
         ]
       },
       {
@@ -85,20 +63,8 @@ defineProps({
         items: [
           {
             name: "contact us",
-            href: "https://www.creative-tim.com/contact-us"
+            href: "/"
           },
-          {
-            name: "knowledge center",
-            href: "https://www.creative-tim.com/knowledge-center"
-          },
-          {
-            name: "custom development",
-            href: "https://services.creative-tim.com/"
-          },
-          {
-            name: "sponsorships",
-            href: "https://www.creative-tim.com/sponsorships"
-          }
         ]
       },
       {
@@ -106,17 +72,20 @@ defineProps({
         items: [
           {
             name: "terms & conditions",
-            href: "https://www.creative-tim.com/terms"
+            href: "/"
           },
           {
             name: "privacy policy",
-            href: "https://www.creative-tim.com/privacy"
+            href: "/"
           },
           {
             name: "licenses (EULA)",
-            href: "https://www.creative-tim.com/license"
+            href: "/"
           }
         ]
+      },
+      {
+        
       }
     ]
   }
@@ -129,7 +98,7 @@ defineProps({
         <div class="col-md-3 mb-4 ms-auto">
           <div>
             <a :href="brand.route">
-              <img :src="brand.logo" class="mb-3 footer-logo" alt="main_logo" />
+              <img :src="brand.logo" class="footer-logo" alt="main_logo" />
             </a>
             <h6 class="font-weight-bolder mb-4">{{ brand.name }}</h6>
           </div>
@@ -171,9 +140,9 @@ defineProps({
             <p class="text-dark my-4 text-sm font-weight-normal">
               All rights reserved. Copyright ©
               {{ new Date().getFullYear() }}
-              Material Kit by
-              <a href="https://www.creative-tim.com" target="_blank"
-                >Creative Tim</a
+              ShortIt by
+              <a target="_blank"
+                >Palm Co., Ltd. IT</a
               >.
             </p>
           </div>

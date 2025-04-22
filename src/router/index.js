@@ -1,4 +1,9 @@
+/* eslint-disable prettier/prettier */
 import { createRouter, createWebHistory } from "vue-router";
+
+// router settings
+import MainView from "../views/Main/MainView.vue";
+
 import PresentationView from "../views/Presentation/PresentationView.vue";
 import AboutView from "../views/LandingPages/AboutUs/AboutView.vue";
 import ContactView from "../views/LandingPages/ContactUs/ContactView.vue";
@@ -28,6 +33,11 @@ const router = createRouter({
   routes: [
     {
       path: "/",
+      name: "main",
+      component: MainView,
+    },
+    {
+      path: "/old",
       name: "presentation",
       component: PresentationView,
     },

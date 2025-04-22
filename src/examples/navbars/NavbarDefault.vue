@@ -8,8 +8,8 @@ import ArrDark from "@/assets/img/down-arrow-dark.svg";
 import downArrow from "@/assets/img/down-arrow.svg";
 import DownArrWhite from "@/assets/img/down-arrow-white.svg";
 
+//appStore
 import { useAppStore } from "@/stores/index.js";
-
 const appStore = useAppStore();
 
 const props = defineProps({
@@ -45,8 +45,6 @@ const props = defineProps({
     default: false,
   },
 });
-
-console.log(props.action);
 
 // set arrow  color
 function getArrowColor() {
