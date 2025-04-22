@@ -8,6 +8,10 @@ import ArrDark from "@/assets/img/down-arrow-dark.svg";
 import downArrow from "@/assets/img/down-arrow.svg";
 import DownArrWhite from "@/assets/img/down-arrow-white.svg";
 
+import { useAppStore } from "@/stores/index.js";
+
+const appStore = useAppStore();
+
 const props = defineProps({
   action: {
     type: Object,
@@ -15,32 +19,34 @@ const props = defineProps({
     color: String,
     label: String,
     default: () => ({
-      route: "https://www.creative-tim.com/product/vue-material-kit",
+      route: "/",
       color: "bg-gradient-success",
-      label: "Free Download"
-    })
+      label: "Login",
+    }),
   },
   transparent: {
     type: Boolean,
-    default: false
+    default: false,
   },
   light: {
     type: Boolean,
-    default: false
+    default: false,
   },
   dark: {
     type: Boolean,
-    default: false
+    default: false,
   },
   sticky: {
     type: Boolean,
-    default: false
+    default: false,
   },
   darkText: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 });
+
+console.log(props.action);
 
 // set arrow  color
 function getArrowColor() {
@@ -108,6 +114,7 @@ watch(
           : 'container-fluid px-0'
       "
     >
+      <!-- Web -->
       <RouterLink
         class="navbar-brand d-none d-md-block"
         :class="[
@@ -120,8 +127,11 @@ watch(
         title="Designed and Coded by Creative Tim"
         data-placement="bottom"
       >
-        Material Kit 2
+      {{ appStore.siteTitle }}
       </RouterLink>
+      <!-- Web -->
+
+      <!-- Mobile -->
       <RouterLink
         class="navbar-brand d-block d-md-none"
         :class="
@@ -134,13 +144,19 @@ watch(
         title="Designed and Coded by Creative Tim"
         data-placement="bottom"
       >
-        Material Design
+        {{ appStore.siteTitle }}
       </RouterLink>
+      <!-- Mobile -->
+
+      <!-- Mobile -->
       <a
-        href="https://www.creative-tim.com/product/vue-material-kit-pro"
+        href=""
         class="btn btn-sm bg-gradient-success mb-0 ms-auto d-lg-none d-block"
-        >Buy Now</a
+        >Login</a
       >
+      <!--// Mobile -->
+
+      <!-- Mobile -->
       <button
         class="navbar-toggler shadow-none ms-2"
         type="button"
@@ -156,6 +172,9 @@ watch(
           <span class="navbar-toggler-bar bar3"></span>
         </span>
       </button>
+      <!--// Mobile -->
+
+      <!-- Nav components -->
       <div
         class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0"
         id="navigation"
@@ -908,7 +927,7 @@ watch(
               </div>
             </div>
           </li>
-          <li class="nav-item dropdown dropdown-hover mx-2">
+          <!-- <li class="nav-item dropdown dropdown-hover mx-2">
             <a
               href="https://www.github.com/creativetimofficial/vue-material-kit"
               class="nav-link d-flex cursor-pointer align-items-center"
@@ -928,8 +947,11 @@ watch(
               </svg>
               Github
             </a>
-          </li>
+          </li> -->
         </ul>
+        <!--// Nav components -->
+
+        <!-- Login 버튼 -->
         <ul class="navbar-nav d-lg-block d-none">
           <li class="nav-item">
             <a
@@ -941,6 +963,7 @@ watch(
             >
           </li>
         </ul>
+        <!--// Login 버튼 -->
       </div>
     </div>
   </nav>

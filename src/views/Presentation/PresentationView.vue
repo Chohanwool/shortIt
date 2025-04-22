@@ -42,13 +42,23 @@ onUnmounted(() => {
 </script>
 
 <template>
+  <!-- NavBar -->
   <div class="container position-sticky z-index-sticky top-0">
     <div class="row">
       <div class="col-12">
-        <NavbarDefault :sticky="true" />
+        <NavbarDefault
+          :sticky="true"
+          :action="{
+            route: '/login',
+            label: 'Login',
+            color: 'bg-gradient-success',
+          }"
+        />
       </div>
     </div>
   </div>
+  <!--// NavBar -->
+
   <Header>
     <div
       class="page-header min-vh-75"
