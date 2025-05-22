@@ -1,16 +1,18 @@
 <script setup>
-import { RouterLink } from "vue-router";
-import { ref, watch } from "vue";
-import { useWindowsWidth } from "../../assets/js/useWindowsWidth";
+import { RouterLink } from 'vue-router';
+import { ref, watch } from 'vue';
+import { useWindowsWidth } from '../../assets/js/useWindowsWidth';
 
 // images
-import ArrDark from "@/assets/img/down-arrow-dark.svg";
-import downArrow from "@/assets/img/down-arrow.svg";
-import DownArrWhite from "@/assets/img/down-arrow-white.svg";
+import ArrDark from '@/assets/img/down-arrow-dark.svg';
+import downArrow from '@/assets/img/down-arrow.svg';
+import DownArrWhite from '@/assets/img/down-arrow-white.svg';
 
-//appStore
-import { useAppStore } from "@/stores/index.js";
+// appStore
+import { useAppStore } from '@/stores/index.js';
 const appStore = useAppStore();
+
+//
 
 const props = defineProps({
   action: {
@@ -19,9 +21,9 @@ const props = defineProps({
     color: String,
     label: String,
     default: () => ({
-      route: "/",
-      color: "bg-gradient-success",
-      label: "Login",
+      route: '/',
+      color: 'bg-gradient-success',
+      label: 'Login',
     }),
   },
   transparent: {
@@ -61,11 +63,11 @@ function getArrowColor() {
 const getTextColor = () => {
   let color;
   if (props.transparent && textDark.value) {
-    color = "text-dark";
+    color = 'text-dark';
   } else if (props.transparent) {
-    color = "text-white";
+    color = 'text-white';
   } else {
-    color = "text-dark";
+    color = 'text-dark';
   }
 
   return color;
@@ -76,41 +78,36 @@ const getTextColor = () => {
 let textDark = ref(props.darkText);
 const { type } = useWindowsWidth();
 
-if (type.value === "mobile") {
+if (type.value === 'mobile') {
   textDark.value = true;
-} else if (type.value === "desktop" && textDark.value == false) {
+} else if (type.value === 'desktop' && textDark.value == false) {
   textDark.value = false;
 }
 
 watch(
   () => type.value,
   (newValue) => {
-    if (newValue === "mobile") {
+    if (newValue === 'mobile') {
       textDark.value = true;
     } else {
       textDark.value = false;
     }
-  }
+  },
 );
 </script>
 <template>
   <nav
     class="navbar navbar-expand-lg top-0"
     :class="{
-      'z-index-3 w-100 shadow-none navbar-transparent position-absolute my-3':
-        props.transparent,
+      'z-index-3 w-100 shadow-none navbar-transparent position-absolute my-3': props.transparent,
       'my-3 blur border-radius-lg z-index-3 py-2 shadow py-2 start-0 end-0 mx-4 position-absolute mt-4':
         props.sticky,
       'navbar-light bg-white py-3': props.light,
-      ' navbar-dark bg-gradient-dark z-index-3 py-3': props.dark
+      ' navbar-dark bg-gradient-dark z-index-3 py-3': props.dark,
     }"
   >
     <div
-      :class="
-        props.transparent || props.light || props.dark
-          ? 'container'
-          : 'container-fluid px-0'
-      "
+      :class="props.transparent || props.light || props.dark ? 'container' : 'container-fluid px-0'"
     >
       <!-- Web -->
       <RouterLink
@@ -118,25 +115,21 @@ watch(
         :class="[
           (props.transparent && textDark.value) || !props.transparent
             ? 'text-dark font-weight-bolder ms-sm-3'
-            : 'text-white font-weight-bolder ms-sm-3'
+            : 'text-white font-weight-bolder ms-sm-3',
         ]"
         :to="{ name: 'presentation' }"
         rel="tooltip"
         title="Designed and Coded by Creative Tim"
         data-placement="bottom"
       >
-      {{ appStore.siteTitle }}
+        {{ appStore.siteTitle }}
       </RouterLink>
       <!-- Web -->
 
       <!-- Mobile -->
       <RouterLink
         class="navbar-brand d-block d-md-none"
-        :class="
-          props.transparent || props.dark
-            ? 'text-white'
-            : 'font-weight-bolder ms-sm-3'
-        "
+        :class="props.transparent || props.dark ? 'text-white' : 'font-weight-bolder ms-sm-3'"
         to="/"
         rel="tooltip"
         title="Designed and Coded by Creative Tim"
@@ -150,6 +143,7 @@ watch(
       <a
         href=""
         class="btn btn-sm bg-gradient-success mb-0 ms-auto d-lg-none d-block"
+        v-if="$route.path !== '/login'"
         >Login</a
       >
       <!--// Mobile -->
@@ -173,10 +167,7 @@ watch(
       <!--// Mobile -->
 
       <!-- Nav components -->
-      <div
-        class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0"
-        id="navigation"
-      >
+      <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0" id="navigation">
         <ul class="navbar-nav navbar-nav-hover ms-auto">
           <li class="nav-item dropdown dropdown-hover mx-2">
             <a
@@ -187,17 +178,9 @@ watch(
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              <i
-                class="material-icons opacity-6 me-2 text-md"
-                :class="getTextColor()"
-                >dashboard</i
-              >
+              <i class="material-icons opacity-6 me-2 text-md" :class="getTextColor()">dashboard</i>
               Pages
-              <img
-                :src="getArrowColor()"
-                alt="down-arrow"
-                class="arrow ms-2 d-lg-block d-none"
-              />
+              <img :src="getArrowColor()" alt="down-arrow" class="arrow ms-2 d-lg-block d-none" />
               <img
                 :src="getArrowColor()"
                 alt="down-arrow"
@@ -217,10 +200,7 @@ watch(
                       >
                         Landing Pages
                       </div>
-                      <RouterLink
-                        :to="{ name: 'about' }"
-                        class="dropdown-item border-radius-md"
-                      >
+                      <RouterLink :to="{ name: 'about' }" class="dropdown-item border-radius-md">
                         <span>About Us</span>
                       </RouterLink>
                       <RouterLink
@@ -229,10 +209,7 @@ watch(
                       >
                         <span>Contact Us</span>
                       </RouterLink>
-                      <RouterLink
-                        :to="{ name: 'author' }"
-                        class="dropdown-item border-radius-md"
-                      >
+                      <RouterLink :to="{ name: 'author' }" class="dropdown-item border-radius-md">
                         <span>Author</span>
                       </RouterLink>
                       <div
@@ -256,22 +233,13 @@ watch(
                 >
                   Landing Pages
                 </div>
-                <RouterLink
-                  :to="{ name: 'about' }"
-                  class="dropdown-item border-radius-md"
-                >
+                <RouterLink :to="{ name: 'about' }" class="dropdown-item border-radius-md">
                   <span>About Us</span>
                 </RouterLink>
-                <RouterLink
-                  :to="{ name: 'contactus' }"
-                  class="dropdown-item border-radius-md"
-                >
+                <RouterLink :to="{ name: 'contactus' }" class="dropdown-item border-radius-md">
                   <span>Contact Us</span>
                 </RouterLink>
-                <RouterLink
-                  :to="{ name: 'author' }"
-                  class="dropdown-item border-radius-md"
-                >
+                <RouterLink :to="{ name: 'author' }" class="dropdown-item border-radius-md">
                   <span>Author</span>
                 </RouterLink>
                 <div
@@ -279,10 +247,7 @@ watch(
                 >
                   Account
                 </div>
-                <RouterLink
-                  :to="{ name: 'signin-basic' }"
-                  class="dropdown-item border-radius-md"
-                >
+                <RouterLink :to="{ name: 'signin-basic' }" class="dropdown-item border-radius-md">
                   <span>Sign In</span>
                 </RouterLink>
               </div>
@@ -297,17 +262,9 @@ watch(
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              <i
-                class="material-icons opacity-6 me-2 text-md"
-                :class="getTextColor()"
-                >view_day</i
-              >
+              <i class="material-icons opacity-6 me-2 text-md" :class="getTextColor()">view_day</i>
               Sections
-              <img
-                :src="getArrowColor()"
-                alt="down-arrow"
-                class="arrow ms-2 d-lg-block d-none"
-              />
+              <img :src="getArrowColor()" alt="down-arrow" class="arrow ms-2 d-lg-block d-none" />
               <img
                 :src="getArrowColor()"
                 alt="down-arrow"
@@ -323,14 +280,9 @@ watch(
                   <li
                     class="nav-item dropdown dropdown-hover dropdown-subitem list-group-item border-0 p-0"
                   >
-                    <a
-                      class="dropdown-item py-2 ps-3 border-radius-md"
-                      href="javascript:;"
-                    >
+                    <a class="dropdown-item py-2 ps-3 border-radius-md" href="javascript:;">
                       <div class="d-flex">
-                        <div
-                          class="w-100 d-flex align-items-center justify-content-between"
-                        >
+                        <div class="w-100 d-flex align-items-center justify-content-between">
                           <div>
                             <h6
                               class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
@@ -339,11 +291,7 @@ watch(
                             </h6>
                             <span class="text-sm">See all sections</span>
                           </div>
-                          <img
-                            :src="downArrow"
-                            alt="down-arrow"
-                            class="arrow"
-                          />
+                          <img :src="downArrow" alt="down-arrow" class="arrow" />
                         </div>
                       </div>
                     </a>
@@ -365,14 +313,9 @@ watch(
                   <li
                     class="nav-item dropdown dropdown-hover dropdown-subitem list-group-item border-0 p-0"
                   >
-                    <a
-                      class="dropdown-item py-2 ps-3 border-radius-md"
-                      href="javascript:;"
-                    >
+                    <a class="dropdown-item py-2 ps-3 border-radius-md" href="javascript:;">
                       <div class="d-flex">
-                        <div
-                          class="w-100 d-flex align-items-center justify-content-between"
-                        >
+                        <div class="w-100 d-flex align-items-center justify-content-between">
                           <div>
                             <h6
                               class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
@@ -381,11 +324,7 @@ watch(
                             </h6>
                             <span class="text-sm">See all navigations</span>
                           </div>
-                          <img
-                            :src="downArrow"
-                            alt="down-arrow"
-                            class="arrow"
-                          />
+                          <img :src="downArrow" alt="down-arrow" class="arrow" />
                         </div>
                       </div>
                     </a>
@@ -413,14 +352,9 @@ watch(
                   <li
                     class="nav-item dropdown dropdown-hover dropdown-subitem list-group-item border-0 p-0"
                   >
-                    <a
-                      class="dropdown-item py-2 ps-3 border-radius-md"
-                      href="javascript:;"
-                    >
+                    <a class="dropdown-item py-2 ps-3 border-radius-md" href="javascript:;">
                       <div class="d-flex">
-                        <div
-                          class="w-100 d-flex align-items-center justify-content-between"
-                        >
+                        <div class="w-100 d-flex align-items-center justify-content-between">
                           <div>
                             <h6
                               class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
@@ -429,11 +363,7 @@ watch(
                             </h6>
                             <span class="text-sm">See all input areas</span>
                           </div>
-                          <img
-                            :src="downArrow"
-                            alt="down-arrow"
-                            class="arrow"
-                          />
+                          <img :src="downArrow" alt="down-arrow" class="arrow" />
                         </div>
                       </div>
                     </a>
@@ -455,14 +385,9 @@ watch(
                   <li
                     class="nav-item dropdown dropdown-hover dropdown-subitem list-group-item border-0 p-0"
                   >
-                    <a
-                      class="dropdown-item py-2 ps-3 border-radius-md"
-                      href="javascript:;"
-                    >
+                    <a class="dropdown-item py-2 ps-3 border-radius-md" href="javascript:;">
                       <div class="d-flex">
-                        <div
-                          class="w-100 d-flex align-items-center justify-content-between"
-                        >
+                        <div class="w-100 d-flex align-items-center justify-content-between">
                           <div>
                             <h6
                               class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
@@ -471,11 +396,7 @@ watch(
                             </h6>
                             <span class="text-sm">See all examples</span>
                           </div>
-                          <img
-                            :src="downArrow"
-                            alt="down-arrow"
-                            class="arrow"
-                          />
+                          <img :src="downArrow" alt="down-arrow" class="arrow" />
                         </div>
                       </div>
                     </a>
@@ -503,14 +424,9 @@ watch(
                   <li
                     class="nav-item dropdown dropdown-hover dropdown-subitem list-group-item border-0 p-0"
                   >
-                    <a
-                      class="dropdown-item py-2 ps-3 border-radius-md"
-                      href="javascript:;"
-                    >
+                    <a class="dropdown-item py-2 ps-3 border-radius-md" href="javascript:;">
                       <div class="d-flex">
-                        <div
-                          class="w-100 d-flex align-items-center justify-content-between"
-                        >
+                        <div class="w-100 d-flex align-items-center justify-content-between">
                           <div>
                             <h6
                               class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
@@ -519,11 +435,7 @@ watch(
                             </h6>
                             <span class="text-sm">See all elements</span>
                           </div>
-                          <img
-                            :src="downArrow"
-                            alt="down-arrow"
-                            class="arrow"
-                          />
+                          <img :src="downArrow" alt="down-arrow" class="arrow" />
                         </div>
                       </div>
                     </a>
@@ -589,9 +501,7 @@ watch(
               <div class="row d-lg-none">
                 <div class="col-md-12">
                   <div class="d-flex mb-2">
-                    <div
-                      class="w-100 d-flex align-items-center justify-content-between"
-                    >
+                    <div class="w-100 d-flex align-items-center justify-content-between">
                       <div>
                         <h6
                           class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
@@ -614,9 +524,7 @@ watch(
                     Features
                   </RouterLink>
                   <div class="d-flex mb-2 mt-3">
-                    <div
-                      class="w-100 d-flex align-items-center justify-content-between"
-                    >
+                    <div class="w-100 d-flex align-items-center justify-content-between">
                       <div>
                         <h6
                           class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
@@ -645,9 +553,7 @@ watch(
                     Pagination
                   </RouterLink>
                   <div class="d-flex mb-2 mt-3">
-                    <div
-                      class="w-100 d-flex align-items-center justify-content-between"
-                    >
+                    <div class="w-100 d-flex align-items-center justify-content-between">
                       <div>
                         <h6
                           class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
@@ -670,9 +576,7 @@ watch(
                     Forms
                   </RouterLink>
                   <div class="d-flex mb-2 mt-3">
-                    <div
-                      class="w-100 d-flex align-items-center justify-content-between"
-                    >
+                    <div class="w-100 d-flex align-items-center justify-content-between">
                       <div>
                         <h6
                           class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
@@ -701,9 +605,7 @@ watch(
                     Tooltips & Popovers
                   </RouterLink>
                   <div class="d-flex mb-2 mt-3">
-                    <div
-                      class="w-100 d-flex align-items-center justify-content-between"
-                    >
+                    <div class="w-100 d-flex align-items-center justify-content-between">
                       <div>
                         <h6
                           class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
@@ -780,17 +682,9 @@ watch(
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              <i
-                class="material-icons opacity-6 me-2 text-md"
-                :class="getTextColor()"
-                >article</i
-              >
+              <i class="material-icons opacity-6 me-2 text-md" :class="getTextColor()">article</i>
               Docs
-              <img
-                :src="getArrowColor()"
-                alt="down-arrow"
-                class="arrow ms-2 d-lg-block d-none"
-              />
+              <img :src="getArrowColor()" alt="down-arrow" class="arrow ms-2 d-lg-block d-none" />
               <img
                 :src="getArrowColor()"
                 alt="down-arrow"
@@ -814,8 +708,7 @@ watch(
                         Getting Started
                       </h6>
                       <span class="text-sm"
-                        >All about overview, quick start, license and
-                        contents</span
+                        >All about overview, quick start, license and contents</span
                       >
                     </a>
                   </li>
@@ -829,9 +722,7 @@ watch(
                       >
                         Foundation
                       </h6>
-                      <span class="text-sm"
-                        >See our colors, icons and typography</span
-                      >
+                      <span class="text-sm">See our colors, icons and typography</span>
                     </a>
                   </li>
                   <li class="nav-item list-group-item border-0 p-0">
@@ -845,8 +736,7 @@ watch(
                         Components
                       </h6>
                       <span class="text-sm"
-                        >Explore our collection of fully designed
-                        components</span
+                        >Explore our collection of fully designed components</span
                       >
                     </a>
                   </li>
@@ -854,71 +744,48 @@ watch(
               </div>
               <div class="row d-lg-none">
                 <div class="col-md-12 g-0">
-                  <a
-                    class="dropdown-item py-2 ps-3 border-radius-md"
-                    href="./pages/about-us.html"
-                  >
+                  <a class="dropdown-item py-2 ps-3 border-radius-md" href="./pages/about-us.html">
                     <h6
                       class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
                     >
                       Getting Started
                     </h6>
                     <span class="text-sm"
-                      >All about overview, quick start, license and
-                      contents</span
+                      >All about overview, quick start, license and contents</span
                     >
                   </a>
-                  <a
-                    class="dropdown-item py-2 ps-3 border-radius-md"
-                    href="./pages/about-us.html"
-                  >
+                  <a class="dropdown-item py-2 ps-3 border-radius-md" href="./pages/about-us.html">
                     <h6
                       class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
                     >
                       Foundation
                     </h6>
-                    <span class="text-sm"
-                      >See our colors, icons and typography</span
-                    >
+                    <span class="text-sm">See our colors, icons and typography</span>
                   </a>
-                  <a
-                    class="dropdown-item py-2 ps-3 border-radius-md"
-                    href="./pages/about-us.html"
-                  >
+                  <a class="dropdown-item py-2 ps-3 border-radius-md" href="./pages/about-us.html">
                     <h6
                       class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
                     >
                       Components
                     </h6>
-                    <span class="text-sm"
-                      >Explore our collection of fully designed components</span
-                    >
+                    <span class="text-sm">Explore our collection of fully designed components</span>
                   </a>
-                  <a
-                    class="dropdown-item py-2 ps-3 border-radius-md"
-                    href="./pages/about-us.html"
-                  >
+                  <a class="dropdown-item py-2 ps-3 border-radius-md" href="./pages/about-us.html">
                     <h6
                       class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
                     >
                       Plugins
                     </h6>
-                    <span class="text-sm"
-                      >Check how you can integrate our plugins</span
-                    >
+                    <span class="text-sm">Check how you can integrate our plugins</span>
                   </a>
-                  <a
-                    class="dropdown-item py-2 ps-3 border-radius-md"
-                    href="./pages/about-us.html"
-                  >
+                  <a class="dropdown-item py-2 ps-3 border-radius-md" href="./pages/about-us.html">
                     <h6
                       class="dropdown-header text-dark font-weight-bolder d-flex justify-content-cente align-items-center p-0"
                     >
                       Utility Classes
                     </h6>
                     <span class="text-sm"
-                      >For those who want flexibility, use our utility
-                      classes</span
+                      >For those who want flexibility, use our utility classes</span
                     >
                   </a>
                 </div>
@@ -949,8 +816,8 @@ watch(
         </ul>
         <!--// Nav components -->
 
-        <!-- Login 버튼 -->
-        <ul class="navbar-nav d-lg-block d-none">
+        <!-- Login 버튼(로그인 페이지에서는 숨김) -->
+        <ul class="navbar-nav d-lg-block d-none" v-if="$route.path !== '/login'">
           <li class="nav-item">
             <a
               :href="action.route"
