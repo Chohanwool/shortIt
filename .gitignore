@@ -27,3 +27,7 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+
+.prttierrc
+eslint.config.mjs
+package.json
