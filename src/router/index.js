@@ -2,8 +2,11 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 // router settings
-import MainView from '../views/Main/MainView.vue';
-import LoginView from '../views/Login/LoginView.vue';
+  // Error
+  import NotFoundView from '../views/Error/NotFoundView.vue';
+
+  import MainView from '../views/Main/MainView.vue';
+  import LoginView from '../views/Login/LoginView.vue';
 
 import PresentationView from '../views/Presentation/PresentationView.vue';
 import AboutView from '../views/LandingPages/AboutUs/AboutView.vue';
@@ -29,9 +32,15 @@ import ElDropdowns from '../layouts/sections/elements/dropdowns/DropdownsView.vu
 import ElProgressBars from '../layouts/sections/elements/progress-bars/ProgressBarsView.vue';
 import ElToggles from '../layouts/sections/elements/toggles/TogglesView.vue';
 import ElTypography from '../layouts/sections/elements/typography/TypographyView.vue';
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: NotFoundView
+    },
     {
       path: '/',
       name: 'main',
