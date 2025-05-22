@@ -47,6 +47,7 @@ const router = createRouter({
       path: '/old',
       name: 'presentation',
       component: PresentationView,
+      meta: { requiresAuth: true }, // ✅ 로그인 필요
     },
     {
       path: '/pages/landing-pages/about-us',

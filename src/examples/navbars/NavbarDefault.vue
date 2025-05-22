@@ -141,7 +141,7 @@ watch(
 
       <!-- Mobile -->
       <a
-        href=""
+        :href="action.route"
         class="btn btn-sm bg-gradient-success mb-0 ms-auto d-lg-none d-block"
         v-if="$route.path !== '/login'"
         >Login</a
